@@ -22,7 +22,11 @@ pp longitude = loc.fetch("lng")
 
 pirate_weather_api_key=ENV.fetch("PIRATE_WEATHER_KEY")
 pirate_weather_url = "https://api.pirateweather.net/forecast/"+pirate_weather_api_key+"/"+latitude.to_s+","+longitude.to_s
-raw_response = HTTP.get(pirate_weather_url)
+raw_response_pirate = HTTP.get(pirate_weather_url)
+parse_response_pirate = JSON.parse(raw_response_pirate)
+results_pirate = parse_response_pirate.fetch("currently")
+temperature = results_pirate.fetch("temperature")
+pp temperature
 
 
 #https://maps.googleapis.com/maps/api/geocode/json?address=" + user_location + "&key=" + ENV.fetch("GMAPS_KEY")
